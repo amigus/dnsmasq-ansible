@@ -1,0 +1,4 @@
+---
+dnsmasq_etc: /etc/dnsmasq.d
+dnsmasq_usergroup: dnsmasq
+dnsmasq_user: dnsmasq

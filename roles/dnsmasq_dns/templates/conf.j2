@@ -1,0 +1,29 @@
+{% if dnsmasq_dns_interfaces is defined %}
+{% for interface in dnsmasq_dns_interfaces %}
+interface={{ interface }}
+{% endfor %}
+{% endif %}
+{% if dnsmasq_dns_hosts is defined %}
+addn-hosts={{ dnsmasq_dns_hosts_file }}
+{% endif %}
+{% for option in dnsmasq_dns_options %}
+{{ option }}
+{% endfor %}
+{% for server in dnsmasq_dns_servers %}
+{%- if server.domains is defined %}
+server={% for domain in server.domains %}
+/{{ domain -}}
+{% endfor %}/{{ server.address }}
+{% elif server.domain is defined %}
+server=/{{ server.domain }}/{{ server.address }}
+{% elif server.network is not defined and server.networks is not defined %}
+server={{ server.address }}
+{% endif %}
+{% if server.networks is defined %}
+{% for network in server.networks %}
+rev-server={{ network }},{{ server.address }}
+{% endfor %}
+{% elif server.network is defined %}
+rev-server={{ server.network }},{{ server.address }}
+{% endif %}
+{% endfor %}

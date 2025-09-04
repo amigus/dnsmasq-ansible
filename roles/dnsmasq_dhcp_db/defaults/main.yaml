@@ -1,0 +1,39 @@
+---
+dnsmasq_dhcp_db_conf_file: "{{ dnsmasq_etc }}/dhcp-leasedb.conf"
+dnsmasq_dhcp_db_script_shell: /bin/sh
+dnsmasq_dhcp_db_script_sqlite_bin: sqlite3
+dnsmasq_dhcp_db_sql:
+  CREATE TABLE IF NOT EXISTS requests (
+    received TEXT NOT NULL,
+    argument TEXT CHECK (argument IN ('add', 'del', 'old')),
+    mac TEXT CHECK (mac REGEXP '^[a-zA-Z0-9]{2}(:[a-zA-Z0-9]{2}){5}$'),
+    ipv4 TEXT CHECK (ipv4 REGEXP '^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$'),
+    client_id TEXT,
+    requested_options TEXT
+  );
+
+  CREATE INDEX IF NOT EXISTS requests_addresses_index ON requests (mac, ipv4);
+  CREATE INDEX IF NOT EXISTS requests_received_index ON requests (received);
+
+  CREATE TABLE IF NOT EXISTS leases (
+      mac TEXT CHECK (mac REGEXP '^[a-zA-Z0-9]{2}(:[a-zA-Z0-9]{2}){5}$'),
+      ipv4 TEXT CHECK (ipv4 REGEXP '^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$'),
+      added TEXT,
+      renewed TEXT,
+      PRIMARY KEY (mac, ipv4)
+  );
+
+  CREATE TABLE IF NOT EXISTS clients (
+      mac TEXT PRIMARY KEY CHECK (mac REGEXP '^[a-zA-Z0-9]{2}(:[a-zA-Z0-9]{2}){5}$'),
+      hostname TEXT,
+      client_id TEXT,
+      vendor_class TEXT,
+      updated TEXT
+  );
+
+  DROP VIEW IF EXISTS dnsmasq;
+  CREATE VIEW dnsmasq AS SELECT unixepoch(ifnull(l.renewed, l.added)), l.mac,
+      l.ipv4, c.hostname, ifnull(c.client_id, '*')
+          FROM leases AS l join clients AS c ON l.mac = c.mac;
+dnsmasq_dhcp_db_user: "{{ dnsmasq_user }}"
+dnsmasq_dhcp_db_usergroup: "{{ dnsmasq_usergroup }}"

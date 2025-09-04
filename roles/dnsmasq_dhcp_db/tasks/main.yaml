@@ -1,0 +1,44 @@
+---
+- name: Create Dnsmasq DHCP lease database
+  notify: Restart dnsmasq service
+  block:
+    - name: Create lease database configuration
+      ansible.builtin.template:
+        dest: "{{ dnsmasq_dhcp_db_conf_file }}"
+        mode: "0644"
+        src: conf.j2
+
+    - name: Create lease database management script
+      ansible.builtin.template:
+        dest: "{{ dnsmasq_dhcp_db_script }}"
+        group: "{{ dnsmasq_dhcp_db_usergroup }}"
+        mode: "0750"
+        src: script.j2
+
+    - name: Initialize the SQLite database file
+      ansible.builtin.command:
+        cmd: "{{ dnsmasq_dhcp_db_script_sqlite_bin }} {{ dnsmasq_dhcp_db }}"
+        stdin: "{{ dnsmasq_dhcp_db_sql }}"
+        creates: "{{ dnsmasq_dhcp_db }}"
+
+    - name: Set usergroup and permissions on the database file
+      ansible.builtin.file:
+        group: "{{ dnsmasq_dhcp_db_usergroup }}"
+        mode: "0660"
+        path: "{{ dnsmasq_dhcp_db }}"
+        state: file
+
+- name: Set filesystem permissions (ACL) for the lease database
+  when: dnsmasq_dhcp_db is defined and ansible_facts['os_family'] != 'Alpine'
+  ansible.posix.acl:
+    entry: "user:{{ dnsmasq_dhcp_db_user }}:rwx"
+    path: "{{ dnsmasq_dhcp_db | dirname }}"
+    state: present
+
+- name: Set filesystem permissions for the lease database on Alpine
+  when: dnsmasq_dhcp_db is defined and ansible_facts['os_family'] == 'Alpine'
+  ansible.builtin.file:
+    mode: "0775"
+    group: "{{ dnsmasq_dhcp_db_usergroup }}"
+    path: "{{ dnsmasq_dhcp_db | dirname }}"
+    state: directory

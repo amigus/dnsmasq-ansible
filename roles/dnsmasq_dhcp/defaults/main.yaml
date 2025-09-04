@@ -1,0 +1,9 @@
+---
+dnsmasq_dhcp_client_options: []
+dnsmasq_dhcp_conf_file: "{{ dnsmasq_etc }}/dhcp.conf"
+dnsmasq_dhcp_hosts_file: "{{ dnsmasq_etc }}/dhcp.hosts"
+dnsmasq_dhcp_ignore: []
+dnsmasq_dhcp_mac_tags: []
+dnsmasq_dhcp_options: []
+dnsmasq_dhcp_user: "{{ dnsmasq_user }}"
+dnsmasq_dhcp_usergroup: "{{ dnsmasq_usergroup }}"

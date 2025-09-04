@@ -1,0 +1,9 @@
+#!{{ dnsmasq_web_openrc_run }}
+
+description="JSON/HTTP interface for Dnsmasq"
+command="{{ dnsmasq_web_binary }}"
+command_args="{{ dnsmasq_web_args }} -d -u {{ dnsmasq_web_user }} -g {{ dnsmasq_web_usergroup }}"
+pidfile="{{ dnsmasq_web_pid_file }}"
+depend() {
+        after dnsmasq
+}

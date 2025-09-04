@@ -1,0 +1,71 @@
+---
+- name: Get latest dnsmasq-web release
+  when: dnsmasq_web_version == 'latest'
+  block:
+    - name: Fetch latest release URL
+      ansible.builtin.uri:
+        url: https://github.com/amigus/dnsmasq-web/releases/latest
+        method: HEAD
+        follow_redirects: all
+      register: dnsmasq_web_latest
+
+    - name: Extract version from release URL
+      ansible.builtin.set_fact:
+        dnsmasq_web_version: "{{ dnsmasq_web_latest.url | regex_search('v\\d+\\.\\d+\\.\\d+$') }}"
+
+- name: Abort unless the host architecture is supported
+  when: dnsmasq_web_arch is not defined and (ansible_architecture != 'x86_64' and ansible_architecture != 'aarch64')
+  ansible.builtin.fail:
+    msg: "Unsupported architecture: {{ ansible_architecture }}. Only x86_64 (amd64) and aarch64 (arm64) are supported."
+
+- name: Use the MUSL binary for Alpine Linux
+  when: dnsmasq_web_arch is not defined and ansible_distribution == 'Alpine'
+  ansible.builtin.set_fact:
+    dnsmasq_web_arch: "{{ ('amd64' if ansible_architecture == 'x86_64' else 'arm64') + '-musl' }}"
+
+- name: Set the architecture for the dnsmasq-web binary
+  when: dnsmasq_web_arch is not defined
+  ansible.builtin.set_fact:
+    dnsmasq_web_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}"
+
+- name: Install the dnsmasq-web binary
+  ansible.builtin.get_url:
+    url: "https://github.com/amigus/dnsmasq-web/releases/download/{{ dnsmasq_web_version }}/dnsmasq-web-{{ dnsmasq_web_version }}_linux-{{ dnsmasq_web_arch }}"
+    dest: "{{ dnsmasq_web_binary }}"
+    mode: '0755'
+
+- name: Setup dnsmasq-web group
+  ansible.builtin.group:
+    name: "{{ dnsmasq_web_usergroup }}"
+    system: true
+    state: present
+
+- name: Setup dnsmasq-web user
+  ansible.builtin.user:
+    create_home: false
+    group: "{{ dnsmasq_web_usergroup }}"
+    name: "{{ dnsmasq_web_user }}"
+    shell: /sbin/nologin
+    system: true
+
+
+- name: Create dnsmasq-web openrc service
+  when: ansible_service_mgr == 'openrc'
+  ansible.builtin.template:
+    dest: /etc/init.d/dnsmasq-web
+    src: openrc-run.j2
+    mode: '0755'
+
+- name: Create dnsmasq-web systemd service
+  when: ansible_service_mgr == 'systemd'
+  ansible.builtin.template:
+    dest: /etc/systemd/system/dnsmasq-web.service
+    src: systemd-service.j2
+    mode: '0644'
+  notify: Reload systemd
+
+- name: Ensure dnsmasq-web is started and enabled on boot
+  ansible.builtin.service:
+    name: dnsmasq-web
+    state: started
+    enabled: true

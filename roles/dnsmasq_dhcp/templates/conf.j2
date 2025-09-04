@@ -1,0 +1,61 @@
+{% if dnsmasq_dhcp_hosts_dir is defined %}
+dhcp-hostsdir={{ dnsmasq_dhcp_hosts_dir }}
+{% endif %}
+{% if dnsmasq_dhcp_hosts is defined %}
+dhcp-hostsfile={{ dnsmasq_dhcp_hosts_file }}
+{% endif %}
+{% if dnsmasq_dhcp_ignore | length > 0 %}
+dhcp-ignore={{ dnsmasq_dhcp_ignore | map('regex_replace', '^', 'tag:') | join(',') }}
+{% endif %}
+{% for interface in dnsmasq_dhcp_interfaces %}
+{% if interface.subnet is defined %}
+{% set subnet = interface.subnet %}
+{% else %}
+{% set subnet = dnsmasq_dhcp_subnets[interface.device] %}
+{% endif %}
+{% macro dhcp_range(device, start, end, lease_time=undefined) -%}
+dhcp-range=interface:{{ device -}}
+,{{ subnet | ansible.utils.nthhost(start) -}}
+,{{ subnet | ansible.utils.nthhost(end) -}}
+{% if lease_time is defined %}
+,{{ lease_time -}}
+{% endif +%}
+{%- endmacro %}
+{% if interface.ranges is defined %}
+{% for range in interface.ranges %}
+{{ dhcp_range(interface.device, range.start, range.end, range.lease_time | default(interface.lease_time)) }}
+{% endfor %}
+{% elif interface.start is defined %}
+{{ dhcp_range(interface.device, interface.start, (interface.end | default(-2)), interface.lease_time) }}
+{% else %}
+dhcp-range=interface:{{ interface.device -}},{{ subnet | ansible.utils.ipv4('address') -}},static
+{% endif %}
+{%- if interface.router is defined %}
+dhcp-option=interface:{{ interface.device -}}
+,option:router,{{ subnet | ansible.utils.nthhost(interface.router) }}
+{% endif %}
+{% if interface.client_options is defined %}
+{% for option in interface.client_options %}
+dhcp-option=interface:{{ interface.device -}}
+,{{ option }}
+{% endfor %}
+{%+ endif %}
+{% endfor %}
+{% for option in dnsmasq_dhcp_client_options %}
+dhcp-option={{ option }}
+{% endfor %}
+{% if dnsmasq_dhcp_mac_tags is defined %}
+{% for mac_tags in dnsmasq_dhcp_mac_tags %}
+{% for macs in mac_tags | dict2items %}
+{% for mac in [macs.value] | flatten %}
+dhcp-mac=set:{{ macs.key }},{{ mac }}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if dnsmasq_dhcp_domain is defined %}
+domain={{ dnsmasq_dhcp_domain }}
+{% endif %}
+{% for option in dnsmasq_dhcp_options %}
+{{ option }}
+{% endfor %}

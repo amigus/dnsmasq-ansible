@@ -1,0 +1,44 @@
+name: Build and Publish Collection
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible-core
+
+      - name: Build collection
+        run: |
+          ansible-galaxy collection build
+      - name: Publish to Galaxy
+        run: |
+          ansible-galaxy collection publish amigus-dnsmasq-${GITHUB_REF_NAME#v}.tar.gz --api-key ${{ secrets.GALAXY_API_KEY }}
+
+      - name: Create a GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.ref_name }}" --repo "${{ github.repository }}" --title "${{ github.ref_name }} release" --generate-notes
+
+      - name: Upload the collection tarball
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ github.ref_name }}" --repo "${{ github.repository }}" "amigus-dnsmasq-${GITHUB_REF_NAME#v}.tar.gz"

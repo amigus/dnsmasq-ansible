@@ -1,0 +1,10 @@
+---
+dnsmasq_web_args: "-f {{ dnsmasq_web_dhcp_database }} -h {{ dnsmasq_web_dhcp_hosts_dir }} -l {{ dnsmasq_web_listen_address }}"
+dnsmasq_web_dhcp_database: "{{ dnsmasq_dhcp_db }}"
+dnsmasq_web_dhcp_hosts_dir: "{{ dnsmasq_dhcp_hosts_dir }}"
+dnsmasq_web_listen_address: :867
+dnsmasq_web_openrc_run: /sbin/openrc-run
+dnsmasq_web_pid_file: /run/dnsmasq-web.pid
+dnsmasq_web_user: "{{ dnsmasq_user }}"
+dnsmasq_web_usergroup: "{{ dnsmasq_usergroup }}"
+dnsmasq_web_version: latest

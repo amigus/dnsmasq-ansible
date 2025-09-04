@@ -1,0 +1,13 @@
+[Unit]
+Description=JSON/HTTP interface for Dnsmasq
+After=dnsmasq.service
+
+[Service]
+User={{ dnsmasq_web_user }}
+Group={{ dnsmasq_web_usergroup }}
+ExecStart={{ dnsmasq_web_binary }} {{ dnsmasq_web_args }} -d -u {{ dnsmasq_web_user }} -g {{ dnsmasq_web_usergroup }}
+PIDFile={{ dnsmasq_web_pid_file }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,27 @@
+---
+- name: Install dnsmasq package
+  tags: [install]
+  ansible.builtin.include_role:
+    name: dnsmasq_install
+
+- name: Configure dnsmasq for DHCP
+  tags: [dhcp, hosts, reservations]
+  ansible.builtin.include_role:
+    name: dnsmasq_dhcp
+  when: dnsmasq_dhcp_interfaces is defined
+
+- name: Configure dnsmasq to use the DHCP reservations database
+  ansible.builtin.include_role:
+    name: dnsmasq_dhcp_db
+  when: dnsmasq_dhcp_db is defined
+
+- name: Configure dnsmasq for DNS
+  tags: [dns, hosts]
+  ansible.builtin.include_role:
+    name: dnsmasq_dns
+  when: dnsmasq_dns_options is defined or dnsmasq_dns_servers is defined
+
+- name: Install dnsmasq-web for DHCP lease monitoring and reservations management
+  ansible.builtin.include_role:
+    name: dnsmasq_web
+  when: dnsmasq_web_binary is defined

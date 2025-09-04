@@ -1,0 +1,115 @@
+---
+- name: Install using apk
+  when: ansible_facts['pkg_mgr'] == 'apk'
+  block:
+    - name: Install dnsmasq
+      community.general.apk:
+        name: dnsmasq
+        state: present
+
+    - name: Install SQLite using apk
+      community.general.apk:
+        name: sqlite
+        state: present
+      when: dnsmasq_dhcp_db is defined
+
+- name: Install using dnf
+  when: ansible_facts['pkg_mgr'] == 'dnf'
+  block:
+    - name: Install dnsmasq
+      ansible.builtin.dnf:
+        name: dnsmasq
+        state: present
+    - name: Install SQLite using dnf
+      ansible.builtin.dnf:
+        name: sqlite
+        state: present
+      when: dnsmasq_dhcp_db is defined
+
+- name: Install using zypper
+  when: ansible_facts['pkg_mgr'] == 'zypper'
+  block:
+    - name: Install dnsmasq
+      community.general.zypper:
+        name: dnsmasq
+        state: present
+    - name: Install SQLite using zypper
+      community.general.zypper:
+        name: sqlite3
+        state: present
+      when: dnsmasq_dhcp_db is defined
+
+- name: Setup the dnsmasq usergroup
+  ansible.builtin.group:
+    name: "{{ dnsmasq_usergroup }}"
+    system: true
+    state: present
+
+- name: Setup dnsmasq user
+  ansible.builtin.user:
+    name: "{{ dnsmasq_user }}"
+    group: "{{ dnsmasq_usergroup }}"
+    system: true
+    create_home: false
+    shell: /sbin/nologin
+
+- name: "Setup Dnsmasq directory"
+  ansible.builtin.file:
+    group: "{{ dnsmasq_usergroup }}"
+    mode: "0750"
+    path: "{{ dnsmasq_etc }}"
+    state: directory
+
+- name: Uncomment conf-dir=/etc/dnsmasq.d/,*.conf in /etc/dnsmasq.conf
+  ansible.builtin.lineinfile:
+    path: /etc/dnsmasq.conf
+    regexp: '^#?conf-dir=/etc/dnsmasq.d/,.*\.conf'
+    line: conf-dir=/etc/dnsmasq.d/,*.conf
+
+- name: Comment out conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig
+  when: ansible_distribution in ['CentOS', 'Rocky', 'AlmaLinux', 'RedHat', 'Fedora']
+  ansible.builtin.lineinfile:
+    path: /etc/dnsmasq.conf
+    regexp: '^conf-dir=/etc/dnsmasq.d,.*\.rpm.*,.rpmsave,.rpmorig'
+    line: '#conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig'
+
+- name: Configure SELinux for dnsmasq
+  notify: Restart dnsmasq service
+  when: dnsmasq_dhcp_hosts_dir is defined and ansible_facts['selinux']['status'] == 'enabled'
+  block:
+    - name: Set SELinux file context for dnsmasq
+      community.general.sefcontext:
+        setype: dnsmasq_var_run_t
+        state: present
+        target: "{{ dnsmasq_dhcp_hosts_dir }}"
+
+    - name: Restore SELinux context for dnsmasq
+      ansible.builtin.command: restorecon -Rv {{ dnsmasq_dhcp_hosts_dir }}
+      register: dnsmasq_install_restorecon_result
+      changed_when: dnsmasq_install_restorecon_result.stdout | regex_search('^Relabeled')
+
+
+- name: Configure the firewall
+  when: ansible_facts['os_family'] not in ['Alpine', 'Debian']
+  block:
+    - name: Permit DHCP through the firewall
+      when: dnsmasq_dhcp_interfaces is defined
+      ansible.posix.firewalld:
+        service: dhcp
+        immediate: true
+        permanent: true
+        state: enabled
+
+    - name: Permit DNS through the firewall
+      when: dnsmasq_dns_servers is defined
+      ansible.posix.firewalld:
+        service: dns
+        immediate: true
+        permanent: true
+        state: enabled
+
+- name: Enable the Dnsmasq service
+  ansible.builtin.service:
+    name: dnsmasq
+    enabled: true
+    state: started

@@ -1,0 +1,5 @@
+---
+- name: Configure Dnsmasq as a DHCP server and DNS forwarder
+  hosts: dnsmasq
+  roles:
+    - dnsmasq

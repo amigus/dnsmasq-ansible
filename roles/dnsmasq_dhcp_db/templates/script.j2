@@ -1,0 +1,42 @@
+#!{{ dnsmasq_dhcp_db_script_shell }}
+
+if test -z "$1"; then
+    echo "error: missing argument; aborting"
+    exit 1
+elif test "$1" = 'init'; then
+    '{{ dnsmasq_dhcp_db_script_sqlite_bin }}' -separator ' ' '{{ dnsmasq_dhcp_db }}' \
+        'SELECT * from dnsmasq;'
+    exit 0
+fi
+
+mac="'$2'"
+ipv4="'$3'"
+hostname="'$4'"
+client_id=null
+test -n "$DNSMASQ_CLIENT_ID" && client_id="'$DNSMASQ_CLIENT_ID'"
+requested_options=null
+test -n "$DNSMASQ_REQUESTED_OPTIONS" && \
+    requested_options="'$DNSMASQ_REQUESTED_OPTIONS'"
+vendor_class=null
+test -n "$DNSMASQ_VENDOR_CLASS" && vendor_class="'$DNSMASQ_VENDOR_CLASS'"
+now="'$(date +"%Y-%m-%d %H:%M:%S")'"
+sql="BEGIN TRANSACTION;
+INSERT INTO requests VALUES (
+    $now, '$1', $mac, $ipv4, $client_id, $requested_options)"
+
+if test $1 = "add"; then
+    sql="$sql;
+        INSERT INTO leases VALUES ($mac, $ipv4, $now, null);
+        INSERT OR REPLACE INTO clients VALUES (
+            $mac, $hostname, $client_id, $vendor_class, $now)"
+elif test $1 = "old"; then
+    sql="$sql;
+        INSERT INTO leases VALUES ($mac, $ipv4, null, $now)
+            ON CONFLICT(mac, ipv4) DO UPDATE SET renewed = $now"
+elif test $1 = "del"; then
+    sql="$sql;
+        DELETE FROM leases WHERE mac = $mac and ipv4 = $ipv4"
+fi
+
+{{ dnsmasq_dhcp_db_script_sqlite_bin }} '{{ dnsmasq_dhcp_db }}' \
+    "$sql; COMMIT TRANSACTION;"

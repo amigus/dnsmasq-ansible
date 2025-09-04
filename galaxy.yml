@@ -1,0 +1,42 @@
+---
+namespace: amigus
+
+name: dnsmasq
+
+version: 1.0.0
+
+readme: README.md
+
+authors:
+- Adam Migus <adam@migus.org>
+
+description: |
+  An ansible collection containing a set of roles that configures Dnsmasq for DHCP and DNS.
+  dnsmasq_dhcp configures DHCP options and tags, as well as IPv4 ranges and reservations.
+  dnsmasq_dns configures DNS options,
+  including upstream servers,
+  hostname/IPv4 mappings (A records),
+  and domains.
+
+license:
+- MIT
+
+dependencies: {
+  community.general: ">=2.0.0"
+}
+
+repository: http://github.com/amigus/dnsmasq-ansible
+
+documentation: http://github.com/amigus/dnsmasq-ansible
+
+homepage: http://github.com/amigus/dnsmasq-ansible
+
+issues: http://github.com/amigus/dnsmasq-ansible/issues
+
+tags:
+  - dhcp
+  - dns
+  - dnsmasq
+  - ipv4
+  - networking
+  - migusgroup

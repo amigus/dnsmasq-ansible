@@ -1,0 +1,5 @@
+---
+dnsmasq_dns_conf_file: "{{ dnsmasq_etc }}/dns.conf"
+dnsmasq_dns_hosts_file: "{{ dnsmasq_etc }}/dns.hosts"
+dnsmasq_dns_options: []
+dnsmasq_dns_servers: []
