@@ -3,17 +3,17 @@
 [![Build and Publish Collection](https://github.com/amigus/dnsmasq-ansible/actions/workflows/release.yml/badge.svg)](https://github.com/amigus/dnsmasq-ansible/actions/workflows/release.yml)
 
 An Ansible collection containing a set of roles that automate [Dnsmasq](https://dnsmasq.org/doc.html).
-`dnsmasq_dhcp` configures DHCP options and tags, as well as IPv4 ranges and reservations.
-`dnsmasq_dhcp_db` adds [SQLite3](https://sqlite.org/) DHCP lease management via `dhcp-script`.
-`dnsmasq_dns` configures DNS resolver options, including upstream servers, and hosts file.
 `dnsmasq_install` installs Dnsmasq and configures the system to use it.
-`dnsmasq_web` adds [dnsmasq-web](https://github.com/amigus/dnsmasq-web) for REST API management.
+`dnsmasq_dhcp` configures DHCP options and tags, IPv4 ranges and reservations.
+`dnsmasq_dhcp_db` adds an [SQLite3](https://sqlite.org/) DHCP lease management.
+`dnsmasq_dns` configures DNS resolver options, including upstream servers, and a hosts file.
+`dnsmasq_web` installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API.
 
 ## Roles
 
 ### dnsmasq
 
-Basic Dnsmasq installation and configuration role. This role provides the foundation for other Dnsmasq roles in this collection.
+Includes the `dnsmasq_install` role then the others depending based on the definition of the variable(s) each require.
 
 See [roles/dnsmasq/README.md](roles/dnsmasq/README.md) for detailed documentation.
 
@@ -51,7 +51,7 @@ See [roles/dnsmasq_dns/README.md](roles/dnsmasq_dns/README.md) for detailed docu
 
 Installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API for managing DHCP leases and querying client data.
 
-It will run when `dnsmasq_web_enable` is `true`.
+It will run when `dnsmasq_web_binary` is defined.
 
 See [roles/dnsmasq_web/README.md](roles/dnsmasq_web/README.md) for detailed documentation.
 
@@ -119,7 +119,7 @@ All other queries will go to `1.1.1.1`.
       - domain: [dmz.lan, databases.lan]
         network: 192.168.0.0/16
         address: 192.168.100.3
-    dnsmasq_web_binary: /usr/local/sbin/dnsmasq-web
+    dnsmasq_web_binary: /usr/sbin/dnsmasq-web
   roles:
     - amigus.dnsmasq.dnsmasq
 ```

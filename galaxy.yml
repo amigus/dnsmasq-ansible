@@ -11,12 +11,11 @@ authors:
 - Adam Migus <adam@migus.org>
 
 description: |
-  An ansible collection containing a set of roles that configures Dnsmasq for DHCP and DNS.
+  An Ansible collection containing a set of roles that automate Dnsmasq.
   dnsmasq_dhcp configures DHCP options and tags, as well as IPv4 ranges and reservations.
-  dnsmasq_dns configures DNS options,
-  including upstream servers,
-  hostname/IPv4 mappings (A records),
-  and domains.
+  dnsmasq_dns configures DNS options, including upstream servers,
+  hostname/IPv4 mappings (A records), and domains.
+  dnsmasq_web (optional) installs the Dnsmasq web API interface.
 
 license:
 - MIT
@@ -41,4 +40,3 @@ tags:
   - dnsmasq
   - ipv4
   - networking
-  - migusgroup
