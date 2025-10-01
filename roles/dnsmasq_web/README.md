@@ -39,7 +39,8 @@ It also manages DHCP revervations as files in `dhcp-hostsdir`.
 
 ## API Usage
 
-Once installed and running, the REST API will be available for managing DHCP leases and reservations. See the [dnsmasq-web documentation](https://github.com/amigus/dnsmasq-web) for API endpoints and usage.
+Once installed and running, the REST API will be available for managing DHCP leases and reservations.
+See the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) documentation for API endpoints and usage.
 
 ## License
 

@@ -40,7 +40,7 @@ The clients table contains a list of current and past clients.
 
 ## Dependencies
 
-- amigus.dnsmasq.dnsmasq_install (for Dnsmasq and SQLite3 installation)
+- amigus.dnsmasq.dnsmasq_install
 - amigus.dnsmasq.dnsmasq_dhcp
 
 ## Example Playbook

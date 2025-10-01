@@ -2,7 +2,7 @@
 
 [![Build and Publish Collection](https://github.com/amigus/dnsmasq-ansible/actions/workflows/release.yml/badge.svg)](https://github.com/amigus/dnsmasq-ansible/actions/workflows/release.yml)
 
-An ansible collection containing a set of roles that configures [Dnsmasq](https://dnsmasq.org/doc.html).
+An Ansible collection containing a set of roles that automate [Dnsmasq](https://dnsmasq.org/doc.html).
 `dnsmasq_dhcp` configures DHCP options and tags, as well as IPv4 ranges and reservations.
 `dnsmasq_dhcp_db` adds [SQLite3](https://sqlite.org/) DHCP lease management via `dhcp-script`.
 `dnsmasq_dns` configures DNS resolver options, including upstream servers, and hosts file.
@@ -57,12 +57,11 @@ See [roles/dnsmasq_web/README.md](roles/dnsmasq_web/README.md) for detailed docu
 
 ## Examples
 
-Here are some quick examples to get you started.
 For detailed configuration options, see the individual role README files.
 
 ### Minimal DHCP and DNS server
 
-It offers itself as the network gateway and leases the entire subnet starting at .10.
+It offers itself as the network gateway and leases the entire subnet starting at `.10`.
 It offers recursive DNS by passing queries to the system resolver.
 
 ```yaml
@@ -76,7 +75,7 @@ It offers recursive DNS by passing queries to the system resolver.
 
 ### DHCP and DNS server that offers Google DNS to non-light bulbs
 
-It offers .1 as the network gateway and leases addresses 100-200.
+It offers `.1` as the network gateway and leases addresses `100-200`.
 It uses Google for DNS but offers a different (local) resolver to WiZ light bulbs.
 
 ```yaml
@@ -98,25 +97,27 @@ It uses Google for DNS but offers a different (local) resolver to WiZ light bulb
 ### DHCP and DNS server with a DHCP lease database and REST API
 
 It uses a lease database and installs dnsmasq-web for remote management.
-Queries for `dmz.lan` domain or `192.168.100.*` will forward to `192.168.100.3`.
+Queries for the `dmz.lan` or `databases.lan` domains or,
+`192.168.0.0/16` will forward to `192.168.100.3`.
 All other queries will go to `1.1.1.1`.
 
 ```yaml
 - hosts: dnsmasq
   vars:
     dnsmasq_dhcp_db: /var/lib/misc/dnsmasq.leases.db
+    dnsmasq_dhcp_db_script: /usr/sbin/dnsmasq-leasesdb
     dnsmasq_dhcp_domain: servers.lan
     dnsmasq_dhcp_hosts_dir: /var/lib/misc/dnsmasq.hosts.d
-    dnsmasq_dhcp_interfaces: [{ device: eth0, router: 1, start: 5 }]
+    dnsmasq_dhcp_interfaces: [{ device: eth0, router: 1, start: 10 }]
     dnsmasq_dns_hosts: |
       192.168.1.2 dhcp.servers.lan
       192.168.1.3 dns.servers.lan
       192.168.1.4 dns2.servers.lan
-    dnsmasq_dns_options: [bogus-priv, domain-needed, no-resolv]
+    dnsmasq_dns_options: [bogus-priv, domain-needed, no-hosts, no-resolv]
     dnsmasq_dns_servers:
       - address: 1.1.1.1
-      - domain: dmz.lan
-        network: 192.168.100.0/24
+      - domain: [dmz.lan, databases.lan]
+        network: 192.168.0.0/16
         address: 192.168.100.3
     dnsmasq_web_binary: /usr/local/sbin/dnsmasq-web
   roles:
