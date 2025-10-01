@@ -22,6 +22,8 @@ license:
 - MIT
 
 dependencies: {
+  ansible.posix: ">=2.0.0",
+  ansible.utils: ">=5.0.0",
   community.general: ">=2.0.0"
 }
 
