@@ -26,13 +26,13 @@ dependencies: {
   community.general: ">=2.0.0"
 }
 
-repository: http://github.com/amigus/dnsmasq-ansible
+repository: https://github.com/amigus/dnsmasq-ansible
 
-documentation: http://github.com/amigus/dnsmasq-ansible
+documentation: https://amigus.github.io/dnsmasq-ansible/
 
-homepage: http://github.com/amigus/dnsmasq-ansible
+homepage: https://github.com/amigus/dnsmasq-ansible
 
-issues: http://github.com/amigus/dnsmasq-ansible/issues
+issues: https://github.com/amigus/dnsmasq-ansible/issues
 
 tags:
   - dhcp

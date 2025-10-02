@@ -1,0 +1,41 @@
+site_name: amigus.dnsmasq
+repo_url: https://github.com/amigus/dnsmasq-ansible
+site_url: https://amigus.github.io/dnsmasq-ansible/
+docs_dir: docs
+nav:
+  - About: index.md
+  - Getting Started: getting-started.md
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+    - toc.integrate
+    - content.code.annotate
+    - content.code.copy
+markdown_extensions:
+  - abbr
+  - attr_list
+  - def_list
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji
+plugins:
+  - search
