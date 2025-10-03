@@ -634,13 +634,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#role-variables" class="md-nav__link">
+  <a href="#variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Role Variables
+      Variables
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Role Variables">
+    <nav class="md-nav" aria-label="Variables">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -658,9 +658,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#playbooks" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      Playbooks
     </span>
   </a>
   
@@ -753,7 +753,7 @@ A server can contain one or more <code>domain</code> and <code>network</code> va
 <h4 id="domain-and-network-values">domain and network values<a class="headerlink" href="#domain-and-network-values" title="Permanent link">&para;</a></h4>
 <p>Adding a <code>domain</code> or list of <code>domains</code> to a server configures Dnsmasq to forward queries for it/them to the server.
 Adding a <code>network</code> or list of <code>networks</code> forwards reverse-DNS queries, i.e., IP to name queries to the corresponding server.</p>
-<h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link">&para;</a></h2>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
 <h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>dnsmasq_dns_servers</code>: List of DNS servers to configure</li>
@@ -761,7 +761,7 @@ Adding a <code>network</code> or list of <code>networks</code> forwards reverse-
 <li><code>dnsmasq_dns_interfaces</code>: Interfaces to listen on for DNS requests</li>
 <li><code>dnsmasq_dns_options</code>: DNS-related Dnsmasq options</li>
 </ul>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h2 id="playbooks">Playbooks<a class="headerlink" href="#playbooks" title="Permanent link">&para;</a></h2>
 <p>A DHCP and DNS server running on the gateway that uses <code>1.1.1.1</code> and <code>8.8.8.8</code> for DNS:</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dnsmasq</span>
 <span class="w">  </span><span class="nt">vars</span><span class="p">:</span>

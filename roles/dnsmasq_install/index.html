@@ -499,23 +499,14 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#role-variables" class="md-nav__link">
+  <a href="#variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Role Variables
+      Variables
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Role Variables">
+    <nav class="md-nav" aria-label="Variables">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Required
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#optional" class="md-nav__link">
@@ -532,9 +523,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#playbook" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Playbook
     </span>
   </a>
   
@@ -679,9 +670,7 @@
 <li>Configures <em>SELinux</em> (when present) to permit Dnsmasq to use <code>dhcp-hostsdir</code>.</li>
 <li>Configures <em>firewalld</em> (when present) to permit DHCP, DNS or both.</li>
 </ul>
-<h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link">&para;</a></h2>
-<h3 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h3>
-<p>None.</p>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
 <h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>dnsmasq_etc</code>: The Dnsmasq configuration directory;
@@ -691,7 +680,7 @@
 <li><code>dnsmasq_usergroup</code>: The usergroup that the Dnsmasq user belongs to;
   default is <code>dnsmasq</code></li>
 </ul>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h2 id="playbook">Playbook<a class="headerlink" href="#playbook" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dnsmasq</span>
 <span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amigus.dnsmasq.dnsmasq_install</span>

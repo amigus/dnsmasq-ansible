@@ -714,8 +714,8 @@ It will run the roles to configure the <em>target</em> system.</p>
 <h3 id="virtual-enviornment">Virtual enviornment<a class="headerlink" href="#virtual-enviornment" title="Permanent link">&para;</a></h3>
 <p>Python includes <a href="https://docs.python.org/3/library/venv.html">venv</a>.
 This guide will use it to create a "virtual environment."
-The collection and it's dependencies will be installed into it.
-This avoids adding it to the global/system environment.</p>
+The collection and its dependencies will be installed into it,
+which avoids installing everything in the global/system environment.</p>
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dnsmasq.venv.d
 .<span class="w"> </span>dnsmasq.venv.d/bin/activate
 </code></pre></div>
@@ -726,8 +726,8 @@ However, you can <strong>skip this step if the controller system is dedicated</s
 </div>
 <h3 id="dependencies-via-pip">Dependencies via pip<a class="headerlink" href="#dependencies-via-pip" title="Permanent link">&para;</a></h3>
 <h4 id="netaddr">netaddr<a class="headerlink" href="#netaddr" title="Permanent link">&para;</a></h4>
-<p>The <a href="https://pypi.org/project/netaddr/">netaddr</a> library may already be installed.
-The command below will use pip to install it only when it is not present.</p>
+<p>Install the <a href="https://pypi.org/project/netaddr/">netaddr</a> library.
+The command below will install it via <code>pip</code> if it is not already present.</p>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import netaddr&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>netaddr
 </code></pre></div>
 <h4 id="ansible">ansible<a class="headerlink" href="#ansible" title="Permanent link">&para;</a></h4>

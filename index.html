@@ -656,9 +656,9 @@ They are modular and create their own separate Dnsmasq configuration files.</p>
 <dt><a href="roles/dnsmasq/"><code>dnsmasq</code></a></dt>
 <dd>runs <code>dnsmasq_install</code> then other roles based on which variables are present.</dd>
 <dt><a href="roles/dnsmasq_install/"><code>dnsmasq_install</code></a></dt>
-<dd>installs Dnsmasq and configures the system to for it.</dd>
+<dd>installs Dnsmasq and configures the system to run it.</dd>
 <dt><a href="roles/dnsmasq_dhcp/"><code>dnsmasq_dhcp</code></a></dt>
-<dd>configures DHCP options and tags, IPv4 ranges and reservations.</dd>
+<dd>configures DHCP options and tags, IPv4 ranges, and reservations.</dd>
 <dt><a href="roles/dnsmasq_dhcp_db/"><code>dnsmasq_dhcp_db</code></a></dt>
 <dd>adds an <a href="https://sqlite.org/">SQLite3</a> DHCP lease management.</dd>
 <dt><a href="roles/dnsmasq_dns/"><code>dnsmasq_dns</code></a></dt>
@@ -674,7 +674,7 @@ It also requires the Python <a href="https://pypi.org/project/netaddr/">netaddr<
 <p>Install the collection from Ansible Galaxy:</p>
 <div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>amigus.dnsmasq
 </code></pre></div>
-<p>Target the <code>dnsmasq</code> group in your ansible inventory:</p>
+<p>Target the <code>dnsmasq</code> group in your Ansible inventory:</p>
 <div class="highlight"><span class="filename">/etc/ansible/hosts</span><pre><span></span><code><span class="k">[dnsmasq]</span>
 <span class="na">192.168.100.2</span>
 </code></pre></div>

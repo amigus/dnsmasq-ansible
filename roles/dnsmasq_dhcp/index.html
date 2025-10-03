@@ -588,13 +588,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#role-variables" class="md-nav__link">
+  <a href="#variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Role Variables
+      Variables
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Role Variables">
+    <nav class="md-nav" aria-label="Variables">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -621,9 +621,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#playbooks" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      Playbooks
     </span>
   </a>
   
@@ -765,7 +765,7 @@ If a <code>start</code> but no <code>end</code> is set then the range will run t
 <p>The role manages a file containing <code>dhcp-host</code> configuration values.
 It passes the file to Dnsmasq in the <code>dhcp-hostsfile</code> parameter.
 It also sets the <code>dhcp-hostsdir</code> from the <code>dnsmasq_dhcp_hosts_dir</code> variable.</p>
-<h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link">&para;</a></h2>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
 <h3 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>dnsmasq_dhcp_interfaces</code>: List of interfaces to configure DHCP on</li>
@@ -780,7 +780,7 @@ It also sets the <code>dhcp-hostsdir</code> from the <code>dnsmasq_dhcp_hosts_di
 <li><code>dnsmasq_dhcp_options</code>: A list of Dnsmasq DHCP-related options, e.g., <code>log-dhcp</code></li>
 <li><code>dnsmasq_dhcp_mac_tags</code>: A mapping of Dnsmasq tags to ethernet addresses</li>
 </ul>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h2 id="playbooks">Playbooks<a class="headerlink" href="#playbooks" title="Permanent link">&para;</a></h2>
 <p>Minimal DHCP server on <code>eth0</code> that sets itself as the gateway and leases the entire subnet from <code>.5</code>.
 It also sets itself as the DNS server by forwarding everything through system resolver:</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dnsmasq</span>
