@@ -1,4 +1,4 @@
-# dnsmasq_install Role
+# dnsmasq_install
 
 Installs and configures Dnsmasq on the target system using _apk_, _dnf_ and _zypper_.
 
@@ -26,18 +26,10 @@ None.
 - `dnsmasq_usergroup`: The usergroup that the Dnsmasq user belongs to;
   default is `dnsmasq`
 
-## Dependencies
-
-None.
-
-## Example Playbook
+## Example
 
 ```yaml
 - hosts: dnsmasq
   roles:
     - amigus.dnsmasq.dnsmasq_install
 ```
-
-## License
-
-See the collection LICENSE file.
