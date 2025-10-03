@@ -11,7 +11,7 @@ It conditionally includes all the other roles:
 | `dnsmasq_dns`       | when `dnsmasq_dns_options` or `dnsmasq_dns_servers` are defined  |
 | `dnsmasq_web`       | when `dnsmasq_web_binary` is defined                             |
 
-## Examples
+## Playbooks
 
 A DNS resolver that forwards queries to the host resolver:
 

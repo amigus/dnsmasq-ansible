@@ -26,7 +26,7 @@ The leases and clients tables are maintained by the script.
 The leases table contains current leases.
 The clients table contains a list of current and past clients.
 
-## Role Variables
+## Variables
 
 ### Required
 
@@ -38,7 +38,7 @@ The clients table contains a list of current and past clients.
 - `dnsmasq_dhcp_db_script_sqlite_bin`: The location of the sqlite3 binary
 - `dnsmasq_dhcp_db_user`: User to run the script as (default, `dnsmasq_user`)
 
-## Examples
+## Playbooks
 
 A DHCP server that uses the SQLite lease database:
 

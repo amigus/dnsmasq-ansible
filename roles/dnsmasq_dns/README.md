@@ -40,7 +40,7 @@ A server can contain one or more `domain` and `network` values.
 Adding a `domain` or list of `domains` to a server configures Dnsmasq to forward queries for it/them to the server.
 Adding a `network` or list of `networks` forwards reverse-DNS queries, i.e., IP to name queries to the corresponding server.
 
-## Role Variables
+## Variables
 
 ### Optional
 
@@ -49,7 +49,7 @@ Adding a `network` or list of `networks` forwards reverse-DNS queries, i.e., IP 
 - `dnsmasq_dns_interfaces`: Interfaces to listen on for DNS requests
 - `dnsmasq_dns_options`: DNS-related Dnsmasq options
 
-## Examples
+## Playbooks
 
 A DHCP and DNS server running on the gateway that uses `1.1.1.1` and `8.8.8.8` for DNS:
 

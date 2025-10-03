@@ -4,7 +4,7 @@ Installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API.
 It has methods for managing DHCP leases and querying client and request data.
 It also manages DHCP revervations as files in `dhcp-hostsdir`.
 
-## Role Variables
+## Variables
 
 ### Required
 
@@ -21,7 +21,7 @@ It also manages DHCP revervations as files in `dhcp-hostsdir`.
 - `dnsmasq_web_pid_file`: Path to the daemon's PID file;
   default is `/run/dnsmasq-web.pid`
 
-## Example
+## Playbook
 
 ```yaml
 - hosts: dnsmasq

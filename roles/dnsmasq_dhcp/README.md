@@ -43,7 +43,7 @@ The role manages a file containing `dhcp-host` configuration values.
 It passes the file to Dnsmasq in the `dhcp-hostsfile` parameter.
 It also sets the `dhcp-hostsdir` from the `dnsmasq_dhcp_hosts_dir` variable.
 
-## Role Variables
+## Variables
 
 ### Required
 
@@ -59,7 +59,7 @@ It also sets the `dhcp-hostsdir` from the `dnsmasq_dhcp_hosts_dir` variable.
 - `dnsmasq_dhcp_options`: A list of Dnsmasq DHCP-related options, e.g., `log-dhcp`
 - `dnsmasq_dhcp_mac_tags`: A mapping of Dnsmasq tags to ethernet addresses
 
-## Examples
+## Playbooks
 
 Minimal DHCP server on `eth0` that sets itself as the gateway and leases the entire subnet from `.5`.
 It also sets itself as the DNS server by forwarding everything through system resolver:

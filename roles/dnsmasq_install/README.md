@@ -11,11 +11,7 @@ Installs and configures Dnsmasq on the target system using _apk_, _dnf_ and _zyp
 - Configures _SELinux_ (when present) to permit Dnsmasq to use `dhcp-hostsdir`.
 - Configures _firewalld_ (when present) to permit DHCP, DNS or both.
 
-## Role Variables
-
-### Required
-
-None.
+## Variables
 
 ### Optional
 
@@ -26,7 +22,7 @@ None.
 - `dnsmasq_usergroup`: The usergroup that the Dnsmasq user belongs to;
   default is `dnsmasq`
 
-## Example
+## Playbook
 
 ```yaml
 - hosts: dnsmasq
