@@ -1,23 +1,10 @@
-# About
+# Home
 
-[amigus.dnsmasq](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/)
-is a collection available on [Ansible Galaxy](https://galaxy.ansible.com).
-It contains Ansible roles that automate [Dnsmasq](https://dnsmasq.org/doc.html).
-The roles are modular and create their own separate Dnsmasq configuration files.
-
-## Prerequisites
-
-This is an Ansible Collection so it requires [Ansible](https://www.ansible.com)
-which requires [Python](https://www.python.org).
-It also requires the Python [netaddr](https://pypi.org/project/netaddr/) libarary.
-
-## Installation
-
-Install the collection from Ansible Galaxy:
-
-```bash
-ansible-galaxy collection install amigus.dnsmasq
-```
+This is the documentation for the _amigus.dnsmasq_ Ansible collection.
+It is [available](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/)
+on Ansible Galaxy.
+It contains roles that automate [Dnsmasq](https://dnsmasq.org/doc.html).
+They are modular and create their own separate Dnsmasq configuration files.
 
 ## Roles
 
@@ -38,3 +25,35 @@ ansible-galaxy collection install amigus.dnsmasq
 
 [`dnsmasq_web`](roles/dnsmasq_web.md)
 :   installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API.
+
+## Prerequisites
+
+This is an Ansible Collection so it requires [Ansible](https://www.ansible.com)
+which requires [Python](https://www.python.org).
+It also requires the Python [netaddr](https://pypi.org/project/netaddr/) libarary.
+
+## Quick Start
+
+Install the collection from Ansible Galaxy:
+
+```bash
+ansible-galaxy collection install amigus.dnsmasq
+```
+
+Target the `dnsmasq` group in your ansible inventory:
+
+```ini {title=/etc/ansible/hosts}
+[dnsmasq]
+192.168.100.2
+```
+
+Run the default playbook:
+
+```bash
+ansible-playbook amigus.dnsmasq.dnsmasq
+```
+
+The initial installation will include no configuration.
+See the [Configuration](getting-started.md#configuration)
+section of the [Getting Started](getting-started.md)
+for details.

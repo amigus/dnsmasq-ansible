@@ -2,7 +2,7 @@
 
 The installation guide covers getting the collection installed on an Ansible _controller_.
 
-The [Getting Started](../getting-started) guide covers using the collection to install Dnsmasq.
+The [Getting Started](getting-started.md) guide covers using the collection to install Dnsmasq.
 
 ## Prerequisites
 
