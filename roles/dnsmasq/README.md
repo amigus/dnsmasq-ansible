@@ -1,18 +1,19 @@
-# dnsmasq Role
+# dnsmasq
 
-Basic Dnsmasq installation and configuration role.
+This is the main role of the collection.
+It conditionally includes all the other roles:
 
-This role provides the includes all the other Dnsmasq roles in the collection.
+| Role                | Included by this role                                            |
+|---------------------|------------------------------------------------------------------|
+| `dnsmasq_install`   | always                                                           |
+| `dnsmasq_dhcp`      | when `dnsmasq_dhcp_interfaces` is defined                        |
+| `dnsmasq_dhcp_db`   | when `dnsmasq_dhcp_db` is defined                                |
+| `dnsmasq_dns`       | when `dnsmasq_dns_options` or `dnsmasq_dns_servers` are defined  |
+| `dnsmasq_web`       | when `dnsmasq_web_binary` is defined                             |
 
-It will always include the `dnsmasq_install` role.
-It will include the `dnsmasq_dhcp` role when `dnsmasq_dhcp_interfaces` is defined.
-It will include the `dnsmasq_dhcp_db` role when `dnsmasq_dhcp_db` is defined.
-It will include the `dnsmasq_dns` role when `dnsmasq_dns_options` or `dnsmasq_dns_servers` are defined.
-It will include the `dnsmasq_web` role when `dnsmasq_web_binary` is defined.
+## Examples
 
-## Example Playbook
-
-A DNS resolver that passes queries through to the host resolver:
+A DNS resolver that forwards queries to the host resolver:
 
 ```yaml
 - hosts: dnsmasq
@@ -20,6 +21,16 @@ A DNS resolver that passes queries through to the host resolver:
     - amigus.dnsmasq.dnsmasq
 ```
 
-## License
+A resolver that resolves two hosts and forwards all other queries to `1.1.1.1`:
 
-See the collection LICENSE file.
+```yaml
+- hosts: dnsmasq
+  vars:
+    dnsmasq_dns_hosts: |
+      192.168.1.11 storage
+      192.168.1.12 games
+    dnsmasq_dns_options: [bogus-priv, domain-needed, no-hosts, no-resolv]
+    dnsmasq_dns_servers: [{ address: 1.1.1.1 }]
+  roles:
+    - amigus.dnsmasq.dnsmasq
+```

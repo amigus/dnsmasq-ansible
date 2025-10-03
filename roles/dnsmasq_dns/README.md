@@ -1,4 +1,4 @@
-# dnsmasq_dns Role
+# dnsmasq_dns
 
 Manages DNS host and server configuration including:
 
@@ -42,10 +42,6 @@ Adding a `network` or list of `networks` forwards reverse-DNS queries, i.e., IP 
 
 ## Role Variables
 
-### Required
-
-None.
-
 ### Optional
 
 - `dnsmasq_dns_servers`: List of DNS servers to configure
@@ -53,11 +49,7 @@ None.
 - `dnsmasq_dns_interfaces`: Interfaces to listen on for DNS requests
 - `dnsmasq_dns_options`: DNS-related Dnsmasq options
 
-## Dependencies
-
-- amigus.dnsmasq.dnsmasq_install
-
-## Example Playbooks
+## Examples
 
 A DHCP and DNS server running on the gateway that uses `1.1.1.1` and `8.8.8.8` for DNS:
 
@@ -96,7 +88,3 @@ A DNS server with a hosts file and a non-default local resolver:
 It ignores /etc/hosts and /etc/resolv.conf.
 It forwards queries for `wifi.lan` and `192.168.1.0/24` to `192.168.1.2`,
 and uses `1.1.1.1` and `8.8.8.8` to resolve anything else.
-
-## License
-
-See the collection LICENSE file.

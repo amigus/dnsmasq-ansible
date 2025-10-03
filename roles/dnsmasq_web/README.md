@@ -1,4 +1,4 @@
-# dnsmasq_web Role
+# dnsmasq_web
 
 Installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API.
 It has methods for managing DHCP leases and querying client and request data.
@@ -21,27 +21,14 @@ It also manages DHCP revervations as files in `dhcp-hostsdir`.
 - `dnsmasq_web_pid_file`: Path to the daemon's PID file;
   default is `/run/dnsmasq-web.pid`
 
-## Dependencies
-
-- amigus.dnsmasq.dnsmasq_dhcp
-
-## Example Playbook
+## Example
 
 ```yaml
 - hosts: dnsmasq
   vars:
     dnsmasq_dhcp_hosts_dir: /var/lib/misc/dnsmasq.hosts.d
-    dnsmasq_dhcp_interfaces: [{ device: eth0, start: 100, end: 200 }]
+    dnsmasq_dhcp_interfaces: [{ device: eth0 }]
     dnsmasq_web_binary: /usr/sbin/dnsmasq-web
   roles:
     - amigus.dnsmasq.dnsmasq
 ```
-
-## API Usage
-
-Once installed and running, the REST API will be available for managing DHCP leases and reservations.
-See the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) documentation for API endpoints and usage.
-
-## License
-
-See the collection LICENSE file.

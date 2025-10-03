@@ -1,4 +1,4 @@
-# dnsmasq_dhcp_db Role
+# dnsmasq_dhcp_db
 
 Manages the optional lease database, associated script, and configuration including:
 
@@ -13,18 +13,6 @@ The shell script uses the SQLite3 database to manage them.
 It also keeps accumulates request and client data over time.
 It will run when `dnsmasq_dhcp_db` is defined.
 
-## Role Variables
-
-### Required
-
-- `dnsmasq_dhcp_db`: Where to store the database (e.g., `/var/lib/misc/dnsmasq.leases.db`)
-- `dnsmasq_dhcp_db_script`: Where to install the script (e.g., `/usr/sbin/dnsmasq-leasesdb`)
-
-### Optional
-
-- `dnsmasq_dhcp_db_script_sqlite_bin`: The location of the sqlite3 binary
-- `dnsmasq_dhcp_db_user`: User to run the script as (default, `dnsmasq_user`)
-
 ## Database Schema
 
 The role creates an SQLite3 database three tables:
@@ -38,12 +26,19 @@ The leases and clients tables are maintained by the script.
 The leases table contains current leases.
 The clients table contains a list of current and past clients.
 
-## Dependencies
+## Role Variables
 
-- amigus.dnsmasq.dnsmasq_install
-- amigus.dnsmasq.dnsmasq_dhcp
+### Required
 
-## Example Playbook
+- `dnsmasq_dhcp_db`: Where to store the database (e.g., `/var/lib/misc/dnsmasq.leases.db`)
+- `dnsmasq_dhcp_db_script`: Where to install the script (e.g., `/usr/sbin/dnsmasq-leasesdb`)
+
+### Optional
+
+- `dnsmasq_dhcp_db_script_sqlite_bin`: The location of the sqlite3 binary
+- `dnsmasq_dhcp_db_user`: User to run the script as (default, `dnsmasq_user`)
+
+## Examples
 
 A DHCP server that uses the SQLite lease database:
 
@@ -57,7 +52,7 @@ A DHCP server that uses the SQLite lease database:
     - amigus.dnsmasq.dnsmasq
 ```
 
-A more complex example with MAC address tagging and database tracking:
+A more complex example with MAC address tagging:
 
 ```yaml
 - hosts: servers
@@ -75,19 +70,3 @@ A more complex example with MAC address tagging and database tracking:
   roles:
     - amigus.dnsmasq.dnsmasq
 ```
-
-## Database Management
-
-The SQLite database can be queried directly for lease information:
-
-```bash
-# View active leases
-sqlite3 /var/lib/misc/dnsmasq.leases.db "SELECT * FROM leases;"
-
-# View client history
-sqlite3 /var/lib/misc/dnsmasq.leases.db "SELECT * FROM clients;"
-```
-
-## License
-
-See the collection LICENSE file.
