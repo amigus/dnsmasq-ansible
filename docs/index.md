@@ -12,10 +12,10 @@ They are modular and create their own separate Dnsmasq configuration files.
 :   runs `dnsmasq_install` then other roles based on which variables are present.
 
 [`dnsmasq_install`](roles/dnsmasq_install.md)
-:   installs Dnsmasq and configures the system to for it.
+:   installs Dnsmasq and configures the system to run it.
 
 [`dnsmasq_dhcp`](roles/dnsmasq_dhcp.md)
-:   configures DHCP options and tags, IPv4 ranges and reservations.
+:   configures DHCP options and tags, IPv4 ranges, and reservations.
 
 [`dnsmasq_dhcp_db`](roles/dnsmasq_dhcp_db.md)
 :   adds an [SQLite3](https://sqlite.org/) DHCP lease management.
@@ -40,7 +40,7 @@ Install the collection from Ansible Galaxy:
 ansible-galaxy collection install amigus.dnsmasq
 ```
 
-Target the `dnsmasq` group in your ansible inventory:
+Target the `dnsmasq` group in your Ansible inventory:
 
 ```ini {title=/etc/ansible/hosts}
 [dnsmasq]

@@ -3,8 +3,8 @@
 [![Build and Publish Collection](https://github.com/amigus/dnsmasq-ansible/actions/workflows/release.yml/badge.svg)](https://github.com/amigus/dnsmasq-ansible/actions/workflows/release.yml)
 
 An Ansible collection containing a set of roles that automate [Dnsmasq](https://dnsmasq.org/doc.html).
-`dnsmasq_install` installs Dnsmasq and configures the system to use it.
-`dnsmasq_dhcp` configures DHCP options and tags, IPv4 ranges and reservations.
+`dnsmasq_install` installs Dnsmasq and configures the system to run it.
+`dnsmasq_dhcp` configures DHCP options and tags, IPv4 ranges and client IP reservations.
 `dnsmasq_dhcp_db` adds an [SQLite3](https://sqlite.org/) DHCP lease management.
 `dnsmasq_dns` configures DNS resolver options, including upstream servers, and a hosts file.
 `dnsmasq_web` installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API.
@@ -55,14 +55,14 @@ It will run when `dnsmasq_web_binary` is defined.
 
 See [roles/dnsmasq_web/README.md](roles/dnsmasq_web/README.md) for detailed documentation.
 
-## Examples
+## Playbooks
 
 For detailed configuration options, see the individual role README files.
 
 ### Minimal DHCP and DNS server
 
 It offers itself as the network gateway and leases the entire subnet starting at `.10`.
-It offers recursive DNS by passing queries to the system resolver.
+It offers itself as the DNS server and forwards all queries to the system resolver.
 
 ```yaml
 - hosts: dnsmasq
@@ -96,10 +96,11 @@ It uses Google for DNS but offers a different (local) resolver to WiZ light bulb
 
 ### DHCP and DNS server with a DHCP lease database and REST API
 
-It uses a lease database and installs dnsmasq-web for remote management.
-Queries for the `dmz.lan` or `databases.lan` domains or,
-`192.168.0.0/16` will forward to `192.168.100.3`.
-All other queries will go to `1.1.1.1`.
+It uses a lease database and installs dnsmasq-web.
+Dnsmasq will forward th queries for the `dmz.lan`,
+or `databases.lan` or,
+`192.168.0.0/16` to `192.168.100.3`.
+It will forward everything else to `1.1.1.1`.
 
 ```yaml
 - hosts: dnsmasq

@@ -15,8 +15,8 @@ It will run the roles to configure the _target_ system.
 
 Python includes [venv](https://docs.python.org/3/library/venv.html).
 This guide will use it to create a "virtual environment."
-The collection and it's dependencies will be installed into it.
-This avoids adding it to the global/system environment.
+The collection and its dependencies will be installed into it,
+which avoids installing everything in the global/system environment.
 
 ```bash
 python -m venv dnsmasq.venv.d
@@ -31,8 +31,8 @@ python -m venv dnsmasq.venv.d
 
 #### netaddr
 
-The [netaddr](https://pypi.org/project/netaddr/) library may already be installed.
-The command below will use pip to install it only when it is not present.
+Install the [netaddr](https://pypi.org/project/netaddr/) library.
+The command below will install it via `pip` if it is not already present.
 
 ```bash
 python3 -c "import netaddr" 2>/dev/null || pip install netaddr

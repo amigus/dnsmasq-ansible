@@ -9,12 +9,12 @@ and [amigus.dnsmaq](installation.md) installed.
 
 ### Target system(s)
 
-**Must have Python installed** and use the `apk`, `dnf` or `zypper` package manager.
+**Must have Python installed** and use the `apk`, `dnf`, or `zypper` package manager.
 
 #### Supported distros
 
-- **RedHat** based: Rocky Linux, AlmaLinux
-- **OpenSUSE** based: Leap or Tumbleweed
+- **RedHat**-based: Rocky Linux, AlmaLinux
+- **OpenSUSE**-based: Leap or Tumbleweed
 - **Alpine** Linux
 
 #### Root access
@@ -23,7 +23,7 @@ The user running Ansible needs **SSH access to the target system(s) as root** or
 
 #### Static IP address
 
-The target system(s) **_must_ already have a static IP address** on the interface for DHCP to work.
+For DHCP to work, the target system(s) **_must_ already have a static IP address** on the interface.
 
 ## Create an Inventory
 
@@ -55,7 +55,7 @@ dnsmasq:
 ```
 
 !!! important
-    Ensure that the user can log as root or a non-root user with sudo _root_ access without any prompting
+    Ensure that the user can log in as root or as a non-root user with sudo _root_ access, without prompts.
 
 !!! tip
     It is not typical but demonstration purposes,
@@ -93,7 +93,8 @@ Use `ansible-playbook` to run it on the inventory:
 ansible-playbook -i inventory.yaml amigus.dnsmasq.dnsmasq
 ```
 
-If everything is set up correctly, it will install Dnsmasq on the target(s). :tada:
+It will install Dnsmasq on the target(s) if everything is set up correctly.
+:tada:
 
 !!! tip
     The Ansible [documentation](https://docs.ansible.com/ansible/latest)
@@ -103,8 +104,8 @@ If everything is set up correctly, it will install Dnsmasq on the target(s). :ta
 ## Configuration
 
 !!! Note
-    Ansible variables can be added to either the inventory or playbook,
-    so adding the YAML below to either will work.
+    Ansible variables can be in the inventory or the playbook.
+    When they are in both, the inventory takes precedence.
 
 ### DNS
 
@@ -140,8 +141,8 @@ dnsmasq_dhcp_interfaces:
 Only the `device` is required:
 
 - Adding `router` tells Dnsmasq to offer that server as the network gateway instead of itself by default.
-- Adding `start` tells Dnsmasq to dynamically lease a range of subnet IP addresses starting at this one,
-- Adding `end` tells Dnsmasq to only extend the range to this IP instead of to the last IP in the subnet.
+- Adding `start` tells Dnsmasq to dynamically lease a range of subnet IP addresses starting at this one.
+- Adding `end` tells Dnsmasq to extend the range only to this IP instead of extending it through the last IP in the subnet.
 
 Thus, to configure a _static_ server that only serves reserved IP addresses, define `dnsmasq_dhcp_hosts`:
 
@@ -169,7 +170,7 @@ dnsmasq_dhcp_db_script: /usr/sbin/dnsmasq-leasesdb
 ```
 
 !!! note
-    The role will _create_ the database and the script so neither should exist initially.
+    The role will _create_ the database and install the script so neither need to exist initially.
 
 #### dnsmasq-web
 
@@ -197,19 +198,19 @@ that is handy for viewing the DHCP leases table remotely.
 
 Typically, DHCP configuration boils down to three (3) things:
 
-1. Whether the server static or dynamic
+1. Whether the server is static or dynamic
 1. What DNS server(s) does the server offer clients
 1. Does the server include DNS records from a hosts file
 
-If `start` is defined then the server is dynamic otherwise it's static.
+If `start` is defined, the server is dynamic; otherwise, it's static.
 
 The DNS server(s) can be the underlying system resolver or a list of servers.
 
 !!! important
     Add `no-resolv` to `dnsmasq_dns_options` when defining `dnsmasq_dns_servers`.
-    Otherwise Dnsmasq will use _both_ as DNS forwarders.
+    Otherwise, Dnsmasq will use _both_ as DNS forwarders.
 
-    Also add `bogus-priv` to avoid spamming the upstream server(s) with requests for local resources.
+    Also, add `bogus-priv` to avoid spamming the upstream server(s) with requests for local resources.
 
     ```yaml
     dnsmasq_dns_options: [bogus-priv, no-resolv]
@@ -217,7 +218,7 @@ The DNS server(s) can be the underlying system resolver or a list of servers.
     ```
 
 !!! important
-    The DHCP server offers itself as the DNS server then forwards requests.
+    The DHCP server offers itself as the DNS server, then forwards requests.
     However, it can also offer another DNS server.
 
     ```yaml
@@ -226,8 +227,7 @@ The DNS server(s) can be the underlying system resolver or a list of servers.
     ```
 
     In this case, add `no-hosts` and `no-resolv` to `dnsmasq_dns_options`
-    without defining `dnsmasq_dns_servers`,
-    to effectively disable the DNS recursive resolver.
+    without defining `dnsmasq_dns_servers`, to disable the DNS resolver.
 
     ```yaml
     dnsmasq_dns_options: [no-hosts, no-resolv]
@@ -235,7 +235,7 @@ The DNS server(s) can be the underlying system resolver or a list of servers.
 
 !!! important
     Add `no-hosts` to dnsmasq_dns_options when defining `dnsmasq_dns_hosts`.
-    Otherwise Dnsmasq will also serve records from `/etc/hosts`.
+    Otherwise, Dnsmasq will _also_ serve records from `/etc/hosts`.
 
     ```yaml
     dnsmasq_dns_hosts: |
