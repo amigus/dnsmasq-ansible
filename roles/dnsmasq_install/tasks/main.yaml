@@ -60,18 +60,11 @@
     path: "{{ dnsmasq_etc }}"
     state: directory
 
-- name: Uncomment conf-dir=/etc/dnsmasq.d/,*.conf in /etc/dnsmasq.conf
+- name: Adjust Dnsmasq conf-dir to only read *.conf files
   ansible.builtin.lineinfile:
-    path: /etc/dnsmasq.conf
-    regexp: '^#?conf-dir=/etc/dnsmasq.d/,.*\.conf'
-    line: conf-dir=/etc/dnsmasq.d/,*.conf
-
-- name: Comment out conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig
-  when: ansible_distribution in ['CentOS', 'Rocky', 'AlmaLinux', 'RedHat', 'Fedora']
-  ansible.builtin.lineinfile:
-    path: /etc/dnsmasq.conf
-    regexp: '^conf-dir=/etc/dnsmasq.d,.*\.rpm.*,.rpmsave,.rpmorig'
-    line: '#conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig'
+    path: "{{ dnsmasq_conf_file }}"
+    regexp: '^#?conf-dir=.*'
+    line: conf-dir={{ dnsmasq_etc }},*.conf
 
 - name: Configure SELinux for dnsmasq
   notify: Restart dnsmasq service

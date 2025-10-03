@@ -3,7 +3,7 @@ namespace: amigus
 
 name: dnsmasq
 
-version: 1.0.1
+version: 1.0.2
 
 readme: README.md
 
