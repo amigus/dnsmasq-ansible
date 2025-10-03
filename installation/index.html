@@ -8,23 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://amigus.github.io/dnsmasq-ansible/">
+        <link rel="canonical" href="https://amigus.github.io/dnsmasq-ansible/installation/">
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="installation/">
+      
+        <link rel="next" href="../getting-started/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>amigus.dnsmasq</title>
+        <title>Installation - amigus.dnsmasq</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
       
       
 
@@ -43,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#home" class="md-skip">
+        <a href="#installation" class="md-skip">
           Skip to content
         </a>
       
@@ -76,7 +78,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="amigus.dnsmasq" class="md-header__button md-logo" aria-label="amigus.dnsmasq" data-md-component="logo">
+    <a href=".." title="amigus.dnsmasq" class="md-header__button md-logo" aria-label="amigus.dnsmasq" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -96,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Installation
             
           </span>
         </div>
@@ -181,11 +183,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -202,9 +202,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="installation/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -223,7 +225,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="getting-started/" class="md-tabs__link">
+      <a href="../getting-started/" class="md-tabs__link">
         
   
   
@@ -244,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="roles/dnsmasq/" class="md-tabs__link">
+        <a href="../roles/dnsmasq/" class="md-tabs__link">
           
   
   
@@ -280,7 +282,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="amigus.dnsmasq" class="md-nav__button md-logo" aria-label="amigus.dnsmasq" data-md-component="logo">
+    <a href=".." title="amigus.dnsmasq" class="md-nav__button md-logo" aria-label="amigus.dnsmasq" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -307,6 +309,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -324,7 +348,7 @@
   
   
   <span class="md-ellipsis">
-    Home
+    Installation
     
   </span>
   
@@ -332,12 +356,12 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Home
+    Installation
     
   </span>
   
@@ -360,15 +384,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#roles" class="md-nav__link">
-    <span class="md-ellipsis">
-      Roles
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites
@@ -378,11 +393,77 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
+  <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start
+      Install
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-enviornment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtual enviornment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies-via-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies via pip
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependencies via pip">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netaddr" class="md-nav__link">
+    <span class="md-ellipsis">
+      netaddr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      ansible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collection-via-galaxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection via Galaxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-in-one-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      All-in-one install
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -401,29 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Installation
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   
@@ -488,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roles/dnsmasq/" class="md-nav__link">
+      <a href="../roles/dnsmasq/" class="md-nav__link">
         
   
   
@@ -511,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roles/dnsmasq_install/" class="md-nav__link">
+      <a href="../roles/dnsmasq_install/" class="md-nav__link">
         
   
   
@@ -534,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roles/dnsmasq_dhcp/" class="md-nav__link">
+      <a href="../roles/dnsmasq_dhcp/" class="md-nav__link">
         
   
   
@@ -557,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roles/dnsmasq_dhcp_db/" class="md-nav__link">
+      <a href="../roles/dnsmasq_dhcp_db/" class="md-nav__link">
         
   
   
@@ -580,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roles/dnsmasq_dns/" class="md-nav__link">
+      <a href="../roles/dnsmasq_dns/" class="md-nav__link">
         
   
   
@@ -603,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="roles/dnsmasq_web/" class="md-nav__link">
+      <a href="../roles/dnsmasq_web/" class="md-nav__link">
         
   
   
@@ -645,46 +704,49 @@
   
 
 
-<h1 id="home">Home<a class="headerlink" href="#home" title="Permanent link">&para;</a></h1>
-<p>This is the documentation for the <em>amigus.dnsmasq</em> Ansible collection.
-It is <a href="https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/">available</a>
-on Ansible Galaxy.
-It contains roles that automate <a href="https://dnsmasq.org/doc.html">Dnsmasq</a>.
-They are modular and create their own separate Dnsmasq configuration files.</p>
-<h2 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h2>
-<dl>
-<dt><a href="roles/dnsmasq/"><code>dnsmasq</code></a></dt>
-<dd>runs <code>dnsmasq_install</code> then other roles based on which variables are present.</dd>
-<dt><a href="roles/dnsmasq_install/"><code>dnsmasq_install</code></a></dt>
-<dd>installs Dnsmasq and configures the system to for it.</dd>
-<dt><a href="roles/dnsmasq_dhcp/"><code>dnsmasq_dhcp</code></a></dt>
-<dd>configures DHCP options and tags, IPv4 ranges and reservations.</dd>
-<dt><a href="roles/dnsmasq_dhcp_db/"><code>dnsmasq_dhcp_db</code></a></dt>
-<dd>adds an <a href="https://sqlite.org/">SQLite3</a> DHCP lease management.</dd>
-<dt><a href="roles/dnsmasq_dns/"><code>dnsmasq_dns</code></a></dt>
-<dd>configures DNS resolver options, including upstream servers, and a hosts file.</dd>
-<dt><a href="roles/dnsmasq_web/"><code>dnsmasq_web</code></a></dt>
-<dd>installs the <a href="https://github.com/amigus/dnsmasq-web">dnsmasq-web</a> REST API.</dd>
-</dl>
+<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<p>The installation guide covers getting the collection installed on an Ansible <em>controller</em>.</p>
+<p>The <a href="../getting-started/">Getting Started</a> guide covers using the collection to install Dnsmasq.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p>This is an Ansible Collection so it requires <a href="https://www.ansible.com">Ansible</a>
-which requires <a href="https://www.python.org">Python</a>.
-It also requires the Python <a href="https://pypi.org/project/netaddr/">netaddr</a> libarary.</p>
-<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
-<p>Install the collection from Ansible Galaxy:</p>
+<p>A Linux system with Python installed to serve as the Ansible <em>controller</em>.
+It will run the roles to configure the <em>target</em> system.</p>
+<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
+<h3 id="virtual-enviornment">Virtual enviornment<a class="headerlink" href="#virtual-enviornment" title="Permanent link">&para;</a></h3>
+<p>Python includes <a href="https://docs.python.org/3/library/venv.html">venv</a>.
+This guide will use it to create a "virtual environment."
+The collection and it's dependencies will be installed into it.
+This avoids adding it to the global/system environment.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dnsmasq.venv.d
+.<span class="w"> </span>dnsmasq.venv.d/bin/activate
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is optional but <em>recommended</em> in most cases.
+However, you can <strong>skip this step if the controller system is dedicated</strong> to running Ansible.</p>
+</div>
+<h3 id="dependencies-via-pip">Dependencies via pip<a class="headerlink" href="#dependencies-via-pip" title="Permanent link">&para;</a></h3>
+<h4 id="netaddr">netaddr<a class="headerlink" href="#netaddr" title="Permanent link">&para;</a></h4>
+<p>The <a href="https://pypi.org/project/netaddr/">netaddr</a> library may already be installed.
+The command below will use pip to install it only when it is not present.</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import netaddr&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>netaddr
+</code></pre></div>
+<h4 id="ansible">ansible<a class="headerlink" href="#ansible" title="Permanent link">&para;</a></h4>
+<p>Likewise, ansible may already be present.
+The command below will install ansible when it is not already present.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>ansible<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ansible-core
+</code></pre></div>
+<h3 id="collection-via-galaxy">Collection via Galaxy<a class="headerlink" href="#collection-via-galaxy" title="Permanent link">&para;</a></h3>
+<p>Ansible includes the <code>ansible-galaxy</code> tool.
+It manages roles and collections in the <a href="https://galaxy.ansible.com/ui/">Ansible Galaxy</a>.</p>
 <div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>amigus.dnsmasq
 </code></pre></div>
-<p>Target the <code>dnsmasq</code> group in your ansible inventory:</p>
-<div class="highlight"><span class="filename">/etc/ansible/hosts</span><pre><span></span><code><span class="k">[dnsmasq]</span>
-<span class="na">192.168.100.2</span>
+<h3 id="all-in-one-install">All-in-one install<a class="headerlink" href="#all-in-one-install" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dnsmasq.venv.d
+.<span class="w"> </span>dnsmasq.venv.d/bin/activate
+python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import netaddr&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>netaddr
+<span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>ansible<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ansible-core
+ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>amigus.dnsmasq
 </code></pre></div>
-<p>Run the default playbook:</p>
-<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span>amigus.dnsmasq.dnsmasq
-</code></pre></div>
-<p>The initial installation will include no configuration.
-See the <a href="getting-started/#configuration">Configuration</a>
-section of the <a href="getting-started/">Getting Started</a>
-for details.</p>
 
 
 
@@ -739,10 +801,10 @@ for details.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow", "toc.integrate", "content.code.annotate", "content.code.copy"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow", "toc.integrate", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

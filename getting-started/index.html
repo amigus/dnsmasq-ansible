@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://amigus.github.io/dnsmasq-ansible/getting-started/">
       
       
-        <link rel="prev" href="../concepts/">
+        <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../tutorials/">
+        <link rel="next" href="../roles/dnsmasq/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Getting Started - Dnsmasq Ansible</title>
+        <title>Getting Started - amigus.dnsmasq</title>
       
     
     
@@ -78,7 +78,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Dnsmasq Ansible" class="md-header__button md-logo" aria-label="Dnsmasq Ansible" data-md-component="logo">
+    <a href=".." title="amigus.dnsmasq" class="md-header__button md-logo" aria-label="amigus.dnsmasq" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dnsmasq Ansible
+            amigus.dnsmasq
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -185,13 +185,32 @@
   
   
     <li class="md-tabs__item">
-      <a href="../concepts/" class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
   
     
   
-  Concepts
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
 
       </a>
     </li>
@@ -224,17 +243,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../tutorials/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../roles/dnsmasq/" class="md-tabs__link">
+          
   
-  Tutorials
+  
+  Roles
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -258,15 +278,17 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Dnsmasq Ansible" class="md-nav__button md-logo" aria-label="Dnsmasq Ansible" data-md-component="logo">
+    <a href=".." title="amigus.dnsmasq" class="md-nav__button md-logo" aria-label="amigus.dnsmasq" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Dnsmasq Ansible
+    amigus.dnsmasq
   </label>
   
     <div class="md-nav__source">
@@ -290,12 +312,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Concepts
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
     
   </span>
   
@@ -362,27 +406,150 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation
+      Prerequisites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ansible-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ansible controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target system(s)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Target system(s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-distros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported distros
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-ip-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static IP address
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an Inventory
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-usage" class="md-nav__link">
+  <a href="#run-the-playbook" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic Usage
+      Run the playbook
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Next Steps
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnsmasq-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      dnsmasq-web
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaways
     </span>
   </a>
   
@@ -402,18 +569,184 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Roles
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Roles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../tutorials/" class="md-nav__link">
+      <a href="../roles/dnsmasq/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Tutorials
+    dnsmasq
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles/dnsmasq_install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dnsmasq_install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles/dnsmasq_dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dnsmasq_dhcp
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles/dnsmasq_dhcp_db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dnsmasq_dhcp_db
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles/dnsmasq_dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dnsmasq_dns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles/dnsmasq_web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dnsmasq_web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -424,59 +757,6 @@
                 </div>
               </div>
             
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#basic-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Basic Usage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
             
           
           
@@ -490,21 +770,200 @@
   
 
 
-<h1 id="getting-started">Getting Started</h1>
-<p>Welcome to the Dnsmasq Ansible Collection documentation!</p>
-<p>This guide will help you quickly get up and running with the collection, including installation, basic usage, and links to further resources.</p>
-<h2 id="installation">Installation</h2>
-<p>Install the collection from Ansible Galaxy:</p>
-<div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>amigus.dnsmasq
-</code></pre></div>
-<h2 id="basic-usage">Basic Usage</h2>
-<p>Add the collection to your playbook requirements and use the roles as needed. See the Reference section for details on each role.</p>
-<h2 id="next-steps">Next Steps</h2>
+<h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h3 id="ansible-controller">Ansible controller<a class="headerlink" href="#ansible-controller" title="Permanent link">&para;</a></h3>
+<p>A Linux system with <a href="https://docs.ansible.com/ansible/latest/installation_guide">Ansible</a>
+and <a href="../installation/">amigus.dnsmaq</a> installed.</p>
+<h3 id="target-systems">Target system(s)<a class="headerlink" href="#target-systems" title="Permanent link">&para;</a></h3>
+<p><strong>Must have Python installed</strong> and use the <code>apk</code>, <code>dnf</code> or <code>zypper</code> package manager.</p>
+<h4 id="supported-distros">Supported distros<a class="headerlink" href="#supported-distros" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Explore the Concepts section for architectural details (coming soon)</li>
-<li>Try out the Tutorials for practical examples</li>
-<li>See the Reference for all available roles and variables</li>
+<li><strong>RedHat</strong> based: Rocky Linux, AlmaLinux</li>
+<li><strong>OpenSUSE</strong> based: Leap or Tumbleweed</li>
+<li><strong>Alpine</strong> Linux</li>
 </ul>
+<h4 id="root-access">Root access<a class="headerlink" href="#root-access" title="Permanent link">&para;</a></h4>
+<p>The user running Ansible needs <strong>SSH access to the target system(s) as root</strong> or a non-root user with <em>sudo root</em> access.</p>
+<h4 id="static-ip-address">Static IP address<a class="headerlink" href="#static-ip-address" title="Permanent link">&para;</a></h4>
+<p>The target system(s) <strong><em>must</em> already have a static IP address</strong> on the interface for DHCP to work.</p>
+<h2 id="create-an-inventory">Create an Inventory<a class="headerlink" href="#create-an-inventory" title="Permanent link">&para;</a></h2>
+<p>Ansible targets systems from an <em>inventory</em>.
+Inventories are lists of systems and groupings that Ansible targets en masse.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Ansible <a href="https://docs.ansible.com/ansible/latest">documentation</a>
+includes a <a href="https://docs.ansible.com/ansible/latest/inventory_guide">guide</a>
+on creating and managing inventories.</p>
+</div>
+<p>The collection's default playbook targets the <code>dnsmasq</code> group.
+So it is best to add target systems to that group in the inventory:</p>
+<div class="highlight"><span class="filename">inventory.yaml</span><pre><span></span><code><span class="nn">---</span>
+<span class="nt">dnsmasq</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Use a DNS resolvable name</span>
+<span class="w">    </span><span class="nt">server1</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Or set ansible_host to a resolvable name or IP address:</span>
+<span class="w">    </span><span class="c1"># nodns1:</span>
+<span class="w">    </span><span class="c1">#   ansible_host: 192.168.100.2</span>
+<span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Use when SSH access to the target is as a non-root user with sudo root access:</span>
+<span class="w">    </span><span class="nt">ansible_become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="w">    </span><span class="c1"># Use when SSH access uses a different username than the user calling Ansible:</span>
+<span class="w">    </span><span class="c1"># ansible_user: adam</span>
+</code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ensure that the user can log as root or a non-root user with sudo <em>root</em> access without any prompting</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is not typical but demonstration purposes,
+the same system can be function as the controller and the target.
+<strong>To target localhost (only):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">dnsmasq</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">localhost</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ansible_connection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default <code>ansible_connection</code> is <code>ssh</code>.
+Using <code>local</code> simplifies the demonstration environment by not using it.</p>
+</div>
+</div>
+<h2 id="run-the-playbook">Run the playbook<a class="headerlink" href="#run-the-playbook" title="Permanent link">&para;</a></h2>
+<p>Ansible executes <em>tasks</em> most often organized into <em>playbooks</em>.</p>
+<p>The collection includes this one:</p>
+<div class="highlight"><span class="filename">dnsmasq.yaml</span><pre><span></span><code><span class="nn">---</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dnsmasq</span>
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amigus.dnsmasq.dnsmasq</span>
+</code></pre></div>
+<p>Use <code>ansible-playbook</code> to run it on the inventory:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.yaml<span class="w"> </span>amigus.dnsmasq.dnsmasq
+</code></pre></div>
+<p>If everything is set up correctly, it will install Dnsmasq on the target(s). <img alt="🎉" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f389.png" title=":tada:" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Ansible <a href="https://docs.ansible.com/ansible/latest">documentation</a>
+includes a very useful <a href="https://docs.ansible.com/ansible/latest/playbook_guide">guide</a>
+on using playbooks.</p>
+</div>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ansible variables can be added to either the inventory or playbook,
+so adding the YAML below to either will work.</p>
+</div>
+<h3 id="dns">DNS<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h3>
+<p>The <a href="../roles/dnsmasq_dns/">dnsmasq_dns</a> role sets DNS options and resolvers (servers).</p>
+<p>For example, to use <code>1.1.1.1</code> <em>instead of</em> the system resolver:</p>
+<ol>
+<li>Add <code>1.1.1.1</code> as a server</li>
+<li>Add the Dnsmasq <code>no-resolv</code> to the options</li>
+<li>Add <code>bogus-priv</code> and <code>domain-needed</code> as well if the resolver is external</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dns_options</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bogus-priv</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain-needed</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no-resolv</span>
+<span class="l l-Scalar l-Scalar-Plain">dnsmasq_dns_servers</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+</code></pre></div>
+<h3 id="dhcp">DHCP<a class="headerlink" href="#dhcp" title="Permanent link">&para;</a></h3>
+<p>The <a href="../roles/dnsmasq_dhcp/">dnsmasq_dhcp</a> role runs when <code>dnsmasq_dhcp_interfaces</code> is defined.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dhcp_interfaces</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth0</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">router</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">199</span>
+</code></pre></div>
+<p>Only the <code>device</code> is required:</p>
+<ul>
+<li>Adding <code>router</code> tells Dnsmasq to offer that server as the network gateway instead of itself by default.</li>
+<li>Adding <code>start</code> tells Dnsmasq to dynamically lease a range of subnet IP addresses starting at this one,</li>
+<li>Adding <code>end</code> tells Dnsmasq to only extend the range to this IP instead of to the last IP in the subnet.</li>
+</ul>
+<p>Thus, to configure a <em>static</em> server that only serves reserved IP addresses, define <code>dnsmasq_dhcp_hosts</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dhcp_hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">11:22:33:44:55:66,192.168.1.11,server1</span>
+<span class="w">  </span><span class="no">server2,192.168.1.12</span>
+<span class="nt">dnsmasq_dhcp_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[{</span><span class="nt"> device</span><span class="p">:</span><span class="w"> </span><span class="nv">eth0</span><span class="w"> </span><span class="p p-Indicator">}]</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dnsmasq allows reservations based on name instead of MAC address,
+so in the example above, any client sending DHCP requests with the hostname <code>server2</code>,
+will get the IP address <code>192.168.1.12</code>.</p>
+</div>
+<h4 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h4>
+<p>The <a href="../roles/dnsmasq_dhcp_db/">dnsmasq_dhcp_db</a> role runs when <code>dnsmasq_dhcp_db</code> is defined.</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">dnsmasq_dhcp_db</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/misc/dnsmasq.leases.db</span>
+<span class="nt">dnsmasq_dhcp_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[{</span><span class="nt"> device</span><span class="p">:</span><span class="w"> </span><span class="nv">eth0</span><span class="p p-Indicator">,</span><span class="nt"> start</span><span class="p">:</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">,</span><span class="nt"> end</span><span class="p">:</span><span class="w"> </span><span class="nv">199</span><span class="w"> </span><span class="p p-Indicator">}]</span>
+<span class="nt">dnsmasq_dhcp_db_script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/sbin/dnsmasq-leasesdb</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The role will <em>create</em> the database and the script so neither should exist initially.</p>
+</div>
+<h4 id="dnsmasq-web">dnsmasq-web<a class="headerlink" href="#dnsmasq-web" title="Permanent link">&para;</a></h4>
+<p>The <a href="../roles/dnsmasq_web/">dnsmasq_web</a> role runs when <code>dnsmasq_dhcp_web_binary</code> is defined.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dhcp_db</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/misc/dnsmasq.leases.db</span>
+<span class="nt">dnsmasq_dhcp_hosts_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/misc/dnsmasq.hosts.d</span>
+<span class="nt">dnsmasq_dhcp_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[{</span><span class="nt"> device</span><span class="p">:</span><span class="w"> </span><span class="nv">eth0</span><span class="p p-Indicator">,</span><span class="nt"> start</span><span class="p">:</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">,</span><span class="nt"> end</span><span class="p">:</span><span class="w"> </span><span class="nv">199</span><span class="w"> </span><span class="p p-Indicator">}]</span>
+<span class="nt">dnsmasq_dhcp_db_script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/sbin/dnsmasq-leasesdb</span>
+
+<span class="nt">dnsmasq_dhcp_web_binary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/sbin/dnsmasq-web</span>
+</code></pre></div>
+<p>It installs the latest release of <a href="https://github.com/amigus/dnsmasq-web">dnsmasq-web</a>.
+Once installed, it accepts HTTP requests on port <code>867</code> by default.</p>
+<p>The REST API <a href="https://github.com/amigus/dnsmasq-web#endpoints">endpoints</a>
+enable management of DHCP clients, leases and client IP reservations.</p>
+<p>There is also a <a href="https://github.com/amigus/dnsmasq-web/tree/main/cli">CLI</a>
+that is handy for viewing the DHCP leases table remotely.</p>
+<h2 id="takeaways">Takeaways<a class="headerlink" href="#takeaways" title="Permanent link">&para;</a></h2>
+<p>Typically, DHCP configuration boils down to three (3) things:</p>
+<ol>
+<li>Whether the server static or dynamic</li>
+<li>What DNS server(s) does the server offer clients</li>
+<li>Does the server include DNS records from a hosts file</li>
+</ol>
+<p>If <code>start</code> is defined then the server is dynamic otherwise it's static.</p>
+<p>The DNS server(s) can be the underlying system resolver or a list of servers.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Add <code>no-resolv</code> to <code>dnsmasq_dns_options</code> when defining <code>dnsmasq_dns_servers</code>.
+Otherwise Dnsmasq will use <em>both</em> as DNS forwarders.</p>
+<p>Also add <code>bogus-priv</code> to avoid spamming the upstream server(s) with requests for local resources.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dns_options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">bogus-priv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">no-resolv</span><span class="p p-Indicator">]</span>
+<span class="nt">dnsmasq_dns_servers</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[{</span><span class="nt"> address</span><span class="p">:</span><span class="w"> </span><span class="nv">1.1.1.1</span><span class="w"> </span><span class="p p-Indicator">}]</span>
+</code></pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The DHCP server offers itself as the DNS server then forwards requests.
+However, it can also offer another DNS server.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dhcp_client_options</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">option:dns-server,192.168.1.9</span>
+</code></pre></div>
+<p>In this case, add <code>no-hosts</code> and <code>no-resolv</code> to <code>dnsmasq_dns_options</code>
+without defining <code>dnsmasq_dns_servers</code>,
+to effectively disable the DNS recursive resolver.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dns_options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">no-hosts</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">no-resolv</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Add <code>no-hosts</code> to dnsmasq_dns_options when defining <code>dnsmasq_dns_hosts</code>.
+Otherwise Dnsmasq will also serve records from <code>/etc/hosts</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dnsmasq_dns_hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">192.168.1.6 mco.lbsg.net</span>
+<span class="nt">dnsmasq_dns_options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">bogus-priv</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">no-hosts</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+</div>
 
 
 
@@ -559,7 +1018,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow", "toc.integrate", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
