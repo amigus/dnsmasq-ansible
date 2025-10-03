@@ -2,35 +2,39 @@
 
 [amigus.dnsmasq](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/)
 is a collection available on [Ansible Galaxy](https://galaxy.ansible.com).
+It contains Ansible roles that automate [Dnsmasq](https://dnsmasq.org/doc.html).
+The roles are modular and create their own separate Dnsmasq configuration files.
 
-It contains roles to automate the installation and configuration of [Dnsmasq](https://dnsmasq.org/doc.html):
+## Prerequisites
 
-[`dnsmasq`](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/content/role/dnsmasq/)
+This is an Ansible Collection so it requires [Ansible](https://www.ansible.com)
+which requires [Python](https://www.python.org).
+It also requires the Python [netaddr](https://pypi.org/project/netaddr/) libarary.
+
+## Installation
+
+Install the collection from Ansible Galaxy:
+
+```bash
+ansible-galaxy collection install amigus.dnsmasq
+```
+
+## Roles
+
+[`dnsmasq`](roles/dnsmasq.md)
 :   runs `dnsmasq_install` then other roles based on which variables are present.
 
-    The other roles are run in the order listed.
-
-[`dnsmasq_install`](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/content/role/dnsmasq_install/)
+[`dnsmasq_install`](roles/dnsmasq_install.md)
 :   installs Dnsmasq and configures the system to for it.
 
-    Currently supports three package managers
-
-    - apk (Alpine Linux)
-    - dnf (RedHat Linux variants)
-    - zypper (OpenSUSE Linux variants)
-
-    Configures SELinux to allow Dnsmasq to manage DHCP lease reservations in `dhcp-hostsdir`.
-
-    Configures firewalld to allow DHCP and/or DNS ports
-
-[`dnsmasq_dhcp`](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/content/role/dnsmasq_dhcp/)
+[`dnsmasq_dhcp`](roles/dnsmasq_dhcp.md)
 :   configures DHCP options and tags, IPv4 ranges and reservations.
 
-[`dnsmasq_dhcp_db`](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/content/role/dnsmasq_dhcp_db/)
+[`dnsmasq_dhcp_db`](roles/dnsmasq_dhcp_db.md)
 :   adds an [SQLite3](https://sqlite.org/) DHCP lease management.
 
-[`dnsmasq_dns`](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/content/role/dnsmasq_dns/)
+[`dnsmasq_dns`](roles/dnsmasq_dns.md)
 :   configures DNS resolver options, including upstream servers, and a hosts file.
 
-[`dnsmasq_web`](https://galaxy.ansible.com/ui/repo/published/amigus/dnsmasq/content/role/dnsmasq_web/)
+[`dnsmasq_web`](roles/dnsmasq_web.md)
 :   installs the [dnsmasq-web](https://github.com/amigus/dnsmasq-web) REST API.

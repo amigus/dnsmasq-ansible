@@ -4,7 +4,15 @@ site_url: https://amigus.github.io/dnsmasq-ansible/
 docs_dir: docs
 nav:
   - About: index.md
+  - Installation: installation.md
   - Getting Started: getting-started.md
+  - Roles:
+    - dnsmasq: roles/dnsmasq.md
+    - dnsmasq_install: roles/dnsmasq_install.md
+    - dnsmasq_dhcp: roles/dnsmasq_dhcp.md
+    - dnsmasq_dhcp_db: roles/dnsmasq_dhcp_db.md
+    - dnsmasq_dns: roles/dnsmasq_dns.md
+    - dnsmasq_web: roles/dnsmasq_web.md
 theme:
   name: material
   features:
@@ -31,11 +39,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-  - pymdownx.keys
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.mark
-  - pymdownx.tilde
   - pymdownx.emoji
 plugins:
   - search
+  - include-markdown
