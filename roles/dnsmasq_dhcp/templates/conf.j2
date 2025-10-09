@@ -14,7 +14,14 @@ dhcp-ignore={{ dnsmasq_dhcp_ignore | map('regex_replace', '^', 'tag:') | join(',
 {% set subnet = dnsmasq_dhcp_subnets[interface.device] %}
 {% endif %}
 {% macro dhcp_range(device, start, end, lease_time=undefined) -%}
-dhcp-range=interface:{{ device -}}
+dhcp-range=
+{%- if interface.tags is defined and interface.tags | length > 0 %}
+{{ interface.tags | map('regex_replace', '^', 'tag:') | join(',') }},
+{%- endif -%}
+{%- if interface.set is defined %}
+set:{{ interface.set }},
+{%- endif -%}
+interface:{{ device -}}
 ,{{ subnet | ansible.utils.nthhost(start) -}}
 ,{{ subnet | ansible.utils.nthhost(end) -}}
 {% if lease_time is defined %}
@@ -31,7 +38,11 @@ dhcp-range=interface:{{ device -}}
 dhcp-range=interface:{{ interface.device -}},{{ subnet | ansible.utils.ipv4('address') -}},static
 {% endif %}
 {%- if interface.router is defined %}
-dhcp-option=interface:{{ interface.device -}}
+dhcp-option=
+{%- if interface.tags is defined and interface.tags | length > 0 %}
+{{ interface.tags | map('regex_replace', '^', 'tag:') | join(',') }},
+{%- endif -%}
+interface:{{ interface.device -}}
 ,option:router,{{ subnet | ansible.utils.nthhost(interface.router) }}
 {% endif %}
 {% if interface.client_options is defined %}
