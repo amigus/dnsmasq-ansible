@@ -1,29 +1,30 @@
 ---
-- name: Collect DHCP interface subnets
-  ansible.builtin.set_fact:
-    dnsmasq_dhcp_subnets: >-
-      {{
-        dnsmasq_dhcp_subnets | default({}) | combine({
-          item: [
-          ansible_facts[item]['ipv4']['address'],
-          ansible_facts[item]['ipv4']['prefix']
-          ] | join('/')
-        })
-      }}
-  loop: "{{ dnsmasq_dhcp_interfaces | map(attribute='device') | list }}"
 
 - name: Configure dnsmasq as a DHCP server
+  tags: [dhcp]
   notify: Restart dnsmasq service
   block:
+    - name: Collect DHCP interface subnets
+      ansible.builtin.set_fact:
+        dnsmasq_dhcp_subnets: >-
+          {{
+            dnsmasq_dhcp_subnets | default({}) | combine({
+              item: [
+              ansible_facts[item]['ipv4']['address'],
+              ansible_facts[item]['ipv4']['prefix']
+              ] | join('/')
+            })
+          }}
+      loop: "{{ dnsmasq_dhcp_interfaces | map(attribute='device') | list }}"
+
     - name: Create the DHCP configuration
-      tags: [dhcp]
       ansible.builtin.template:
         dest: "{{ dnsmasq_dhcp_conf_file }}"
         mode: "0644"
         src: "conf.j2"
 
     - name: Create the DHCP hosts file
-      tags: [dhcp, hosts, reservations]
+      tags: [hosts, reservations]
       when: dnsmasq_dhcp_hosts is defined
       ansible.builtin.copy:
         content: "{{ dnsmasq_dhcp_hosts }}"
@@ -31,7 +32,7 @@
         mode: "0644"
 
     - name: Create the DHCP hosts directory
-      tags: [dhcp, reservations]
+      tags: [reservations]
       when: dnsmasq_dhcp_hosts_dir is defined
       ansible.builtin.file:
         group: "{{ dnsmasq_dhcp_usergroup }}"
