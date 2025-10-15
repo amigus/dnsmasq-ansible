@@ -133,9 +133,9 @@ The [dnsmasq_dhcp](roles/dnsmasq_dhcp.md) role runs when `dnsmasq_dhcp_interface
 ```yaml
 dnsmasq_dhcp_interfaces:
 - device: eth0
-- router: 1
-- start: 100
-- end: 199
+  router: 1
+  start: 100
+  end: 199
 ```
 
 Only the `device` is required:
