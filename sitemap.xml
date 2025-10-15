@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/getting-started/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/installation/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/roles/dnsmasq/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/roles/dnsmasq_dhcp/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/roles/dnsmasq_dhcp_db/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/roles/dnsmasq_dns/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/roles/dnsmasq_install/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
     <url>
          <loc>https://amigus.github.io/dnsmasq-ansible/roles/dnsmasq_web/</loc>
-         <lastmod>2025-10-03</lastmod>
+         <lastmod>2025-10-15</lastmod>
     </url>
 </urlset>
